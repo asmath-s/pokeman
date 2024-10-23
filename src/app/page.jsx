@@ -12,9 +12,11 @@ const HomePage = () => {
   const [filteredPokemons, setFilteredPokemons] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedType, setSelectedType] = useState("");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
       try {
         const fetchedTypes = await pokemanapi.fetchPokemonTypes();
         const fetchedPokemons = await pokemanapi.fetchPokemons();
@@ -33,6 +35,8 @@ const HomePage = () => {
         setPokemons(data);
       } catch (error) {
         console.error("Error fetching data:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -60,9 +64,10 @@ const HomePage = () => {
     });
     setFilteredPokemons(filtered);
   };
+
   return (
     <div>
-      <div className="flex gap-4 flex-col sm:flex-row  justify-between my-6 px-2">
+      <div className="flex gap-4 flex-col sm:flex-row justify-between my-6 px-2">
         <SelectField
           types={types}
           onTypeChange={(e) => setSelectedType(e.target.value)}
@@ -74,14 +79,19 @@ const HomePage = () => {
             onSearchChange={(e) => setSearchTerm(e.target.value)}
           />
           <button
-            className="bg-black px-4 py-2 w-full text-white rounded-md  flex items-center justify-center"
+            className="bg-black px-4 py-2 w-full text-white rounded-md flex items-center justify-center"
             type="submit"
           >
             Search
           </button>
         </form>
       </div>
-      {filteredPokemons.length > 0 ? (
+
+      {loading ? (
+        <div className="flex justify-center items-center">
+          <p>Loading...</p>
+        </div>
+      ) : filteredPokemons.length > 0 ? (
         <PokemonList pokemons={filteredPokemons} />
       ) : (
         "No Results Found"
