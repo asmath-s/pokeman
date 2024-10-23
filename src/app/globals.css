@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+body {
+  background-color: white;
+  overflow-x: hidden;
+  font-size: 15px;
+  font-family: "Airbnb Cereal", sans-serif;
+  color: #7b7b8a;
+  scroll-behavior: smooth;
+}
+
+@font-face {
+  font-family: "AirbnbCereal";
+  src: url("/fonts/AirbnbCereal_W_Lt.ttf") format("truetype");
+  font-weight: 300; /* font-light */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "AirbnbCereal";
+  src: url("/fonts/AirbnbCereal_W_Bk.ttf") format("truetype");
+  font-weight: 400; /*font-normal */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "AirbnbCereal";
+  src: url("/fonts/AirbnbCereal_W_Md.ttf") format("truetype");
+  font-weight: 500; /* font-medium */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "AirbnbCereal";
+  src: url("/fonts/AirbnbCereal_W_Bd.ttf") format("truetype");
+  font-weight: 700; /* font-bold */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "AirbnbCereal";
+  src: url("/fonts/AirbnbCereal_W_XBd.ttf") format("truetype");
+  font-weight: 800; /* font-extrabold */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "AirbnbCereal";
+  src: url("/fonts/AirbnbCereal_W_Blk.ttf") format("truetype");
+  font-weight: 900; /* font-black */
+  font-style: normal;
+}
+
+.pokemon-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.pokemon-card {
+  width: 200px; /* Adjust width as needed */
+  margin: 10px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  transition: transform 0.2s;
+}
+
+.pokemon-card:hover {
+  transform: scale(1.05);
+}
+
+@media (max-width: 600px) {
+  .pokemon-list {
+    flex-direction: column;
+    align-items: center;
+  }
+  .pokemon-card {
+    width: 100%;
+  }
+}
